@@ -11,8 +11,7 @@ const StartBlock = ({position=[0,0,0]}) => {
   return (
 
       <group position={position}> 
-          <mesh geometry={boxGeometry} material={floor1kMaterial} scale={[4,0.2,4]} receiveShadow/>
-          
+          <mesh geometry={boxGeometry} material={floor1kMaterial} scale={[4,0.2,4]} receiveShadow/> 
       </group>
     
   )

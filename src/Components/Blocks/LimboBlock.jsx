@@ -8,16 +8,18 @@ const boxGeometry = new THREE.BoxGeometry(1,1,1)
 const floor2kMaterial = new THREE.MeshStandardMaterial({color: 'greenyellow'})
 const obstacleMaterial = new THREE.MeshStandardMaterial({color: 'orangered'})
 
-const StartBlock = ({position=[0,0,0]}) => {
-    const obstacle = useRef()
-    const [speed] = useState(()=>(Math.random()+0.5)*(Math.random()>0.5?1:-1))
+const LimboBlock = ({position=[0,0,0]}) => {
+    
+ const obstacle = useRef()
+    const [speed] = useState(()=>(Math.random()))
 
     useFrame((state) => {
       const time = state.clock.getElapsedTime()
-      const rotation= new THREE.Quaternion() 
-      rotation.setFromEuler(new THREE.Euler(0, time*speed, 0))
-      obstacle.current.setNextKinematicRotation(rotation)
+      const yMove=Math.sin(time*speed)+1.5
+    console.log(yMove)
+      obstacle.current.setNextKinematicTranslation({x:position[0] , y:yMove, z:position[2]})
     })
+    
   return (
       <group position={position}> 
           <mesh geometry={boxGeometry} material={floor2kMaterial} scale={[4,0.2,4]} receiveShadow/>
@@ -28,5 +30,5 @@ const StartBlock = ({position=[0,0,0]}) => {
     
   )
 }
- 
-export default StartBlock
+
+export default LimboBlock
