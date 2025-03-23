@@ -3,6 +3,7 @@ import Lights from './Lights.jsx'
 import Level from './Level.jsx'
 import { Physics } from '@react-three/rapier'
 import { Suspense } from 'react'
+import SpinnerBlock from './Blocks/SpinnerBlock'
 export default function Experience() {
     return <>
 
@@ -11,8 +12,8 @@ export default function Experience() {
 
         <Physics debug>
             <Lights />
-            <Level />
-        </Physics>
+            <Level count={10} types={[SpinnerBlock]}/>
+        </Physics> 
         </Suspense>
      
     </>
