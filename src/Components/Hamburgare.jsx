@@ -4,7 +4,6 @@ import React from 'react'
 
 const Hamburgare = () => {
   const Hamburgare = useGLTF('./hamburger.glb')
-  console.log(Hamburgare)
   Hamburgare.scene.children.forEach((mesh) => {
     mesh.castShadow = true
   }

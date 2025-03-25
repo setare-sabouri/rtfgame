@@ -4,6 +4,8 @@ import Level from './Level.jsx'
 import { Physics } from '@react-three/rapier'
 import { Suspense } from 'react'
 import SpinnerBlock from './Blocks/SpinnerBlock'
+import LimboBlock from './Blocks/LimboBlock'
+import AxeBlock from './Blocks/AxeBlock';
 export default function Experience() {
     return <>
 
@@ -12,7 +14,7 @@ export default function Experience() {
 
         <Physics debug>
             <Lights />
-            <Level count={10} types={[SpinnerBlock]}/>
+            <Level count={10} types={[SpinnerBlock,LimboBlock,AxeBlock]}/>
         </Physics> 
         </Suspense>
      
