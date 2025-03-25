@@ -5,6 +5,7 @@ import AxeBlock from './Blocks/AxeBlock';
 import EndBlock from './Blocks/EndBlock';
 import { useMemo } from 'react';
 import Walls from './Walls';
+import FloorCollider from './Colliders/FloorCollider';
 
 const Level = ({count=5, types=[SpinnerBlock,LimboBlock,AxeBlock]}) => {
 
@@ -32,7 +33,7 @@ const blocks= useMemo(()=>{
             <Walls length={count+2} position={[2.15,0.75,(count*2)+2]}/> //right
             <Walls length={count+2} position={[-2.15,0.75,(count*2)+2]}/> //left
             <Walls length={1} position={[0,0.75,(count+1.5)*4]} scale={[4 ,1.5,0.3]}/> //back
-
+            <FloorCollider length={count}/>
         </>
     );
 };
