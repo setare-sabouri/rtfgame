@@ -1,9 +1,20 @@
 import Experience from "./Components/Experience";
 import { Canvas } from "react-three-fiber";
+import { KeyboardControls } from "@react-three/drei";
 import './styles.scss';
 function App() {
+    
+    const KeyMaps=[
+        {name: "forward" , keys: ["KeyW","ArrowUp"]},
+        {name: "backward" , keys: ["KeyS","ArrowDown"]},
+        {name: "left" , keys: ["KeyA","ArrowLeft"]},
+        {name: "right" , keys: ["KeyD","ArrowRight"]},
+        {name: "jump" , keys: ["Space"]},
+    ]
+
   return (
-    <Canvas
+    <KeyboardControls map={KeyMaps}>
+   <Canvas
         shadows
         camera={ {
             fov: 45,
@@ -13,7 +24,9 @@ function App() {
         } }
     >
         <Experience />
-    </Canvas>  );
+    </Canvas>  
+    </KeyboardControls>
+  )
 }
 
 export default App;
