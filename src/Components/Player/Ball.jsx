@@ -1,5 +1,5 @@
 import { RigidBody,useRapier } from '@react-three/rapier'
-import React, { useEffect } from 'react'
+import React, { use, useEffect,useState } from 'react'
 import { useKeyboardControls } from '@react-three/drei'
 import { useFrame } from 'react-three-fiber'
 import { useRef } from 'react'
@@ -10,6 +10,9 @@ const Ball = () => {
     const [subscribeKeys,getKeys] = useKeyboardControls()
     const ballRef = useRef()
     const {rapier,world}= useRapier()
+
+    const [SmoothedCameraPosition]=useState(()=>new THREE.Vector3(0,10,-10))
+    const [SmoothedTargetPosition]=useState(()=>new THREE.Vector3())
 
 useEffect(()=>{    
    const unSubscribe =subscribeKeys(     // Subscribekeys is listening to jump key in the selector function
@@ -71,8 +74,13 @@ useEffect(()=>{
         CameraTarget.copy(BallPosition)
         CameraTarget.y += 0.25
 
-        state.camera.position.copy(CameraPosition)   
-        state.camera.lookAt(CameraTarget)     
+        //Lerping
+       
+        SmoothedCameraPosition.lerp(CameraPosition,4*delta)
+        SmoothedTargetPosition.lerp(CameraTarget,4*delta)
+
+        state.camera.position.copy(SmoothedCameraPosition)   
+        state.camera.lookAt(SmoothedTargetPosition)     
     })
   return (
    <>
