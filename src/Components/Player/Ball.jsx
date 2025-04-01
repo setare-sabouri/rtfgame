@@ -3,13 +3,14 @@ import React, { useEffect } from 'react'
 import { useKeyboardControls } from '@react-three/drei'
 import { useFrame } from 'react-three-fiber'
 import { useRef } from 'react'
+import * as THREE from 'three'
 import jump from './Jump'
 
 const Ball = () => {
     const [subscribeKeys,getKeys] = useKeyboardControls()
     const ballRef = useRef()
     const {rapier,world}= useRapier()
-    
+
 useEffect(()=>{    
    const unSubscribe =subscribeKeys(     // Subscribekeys is listening to jump key in the selector function
         (state)=>{
@@ -48,7 +49,6 @@ useEffect(()=>{
             Impulse.x +=speed
             Torque.z += speed
         }
-
         if(left){
             Impulse.x -=speed
             Torque.z -= speed
@@ -56,6 +56,23 @@ useEffect(()=>{
 
         ballRef.current.applyImpulse(Impulse)
         ballRef.current.applyTorqueImpulse(Torque)
+
+        /*
+        Camera movement
+         */
+        const BallPosition = ballRef.current.translation()
+
+        const CameraPosition = new THREE.Vector3()
+        CameraPosition.copy(BallPosition)
+        CameraPosition.z -= 2
+        CameraPosition.y += 0.8
+
+        const CameraTarget=new THREE.Vector3()
+        CameraTarget.copy(BallPosition)
+        CameraTarget.y += 0.25
+
+        state.camera.position.copy(CameraPosition)   
+        state.camera.lookAt(CameraTarget)     
     })
   return (
    <>

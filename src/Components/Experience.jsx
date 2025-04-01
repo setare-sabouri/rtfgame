@@ -1,3 +1,4 @@
+import { OrbitControls } from '@react-three/drei'
 import Lights from './Lights.jsx'
 import Level from './Level.jsx'
 import { Physics } from '@react-three/rapier'
@@ -8,6 +9,8 @@ import AxeBlock from './Blocks/AxeBlock';
 import Player from './Player/Player.jsx'
 export default function Experience() {
     return <>
+
+        <OrbitControls makeDefault />
 
         <Suspense>
         <Physics debug>
