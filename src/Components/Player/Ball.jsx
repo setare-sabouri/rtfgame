@@ -1,5 +1,5 @@
-import { RigidBody } from '@react-three/rapier'
-import React from 'react'
+import { RigidBody,useRapier } from '@react-three/rapier'
+import React, { useEffect } from 'react'
 import { useKeyboardControls } from '@react-three/drei'
 import { useFrame } from 'react-three-fiber'
 import { useRef } from 'react'
@@ -8,7 +8,39 @@ import { useRef } from 'react'
 const Ball = () => {
     const [subscribeKeys,getKeys] = useKeyboardControls()
     const ballRef = useRef()
+    const {rapier,world}= useRapier()
+    const jump ={
+
+        
+    }
     
+useEffect(()=>{    
+   const unSubscribe =subscribeKeys(     // Subscribekeys is listening to jump key in the selector function
+        (state)=>{
+            return state.jump
+        },
+
+        (jumpValue)=>{
+            if(jumpValue){
+                const originPivotPoint= ballRef.current.translation()
+                originPivotPoint.y -= 0.51
+                const  direction ={ x:0,y:-1,z:0}
+                const ray=new rapier.Ray(originPivotPoint,direction)
+                const hit =world.castRay(ray,10,true)
+
+                if (hit<0.15){ //we jump only if the distance to the ground is less than 0.15
+                    ballRef.current.applyImpulse({x:0,y:0.3,z:0})
+
+                }
+            }
+        }
+        
+    )
+    return ()=>{
+        unSubscribe()
+    }
+},[])
+
     useFrame((state,delta)=>{
         const {forward,backward,left,right} = getKeys()
 

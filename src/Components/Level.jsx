@@ -5,7 +5,7 @@ import AxeBlock from './Blocks/AxeBlock';
 import EndBlock from './Blocks/EndBlock';
 import { useMemo } from 'react';
 import Walls from './Walls';
-import FloorCollider from './Colliders/FloorCollider';
+import FloorCollider from './Blocks/FloorCollider';
 
 const Level = ({count=5, types=[SpinnerBlock,LimboBlock,AxeBlock]}) => {
 
@@ -18,8 +18,6 @@ const blocks= useMemo(()=>{
     }
     return blocks
 },[count,types])
-
-    console.log(count)
     return (
         <>
             <axesHelper args={[5]} />
