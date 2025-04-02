@@ -75,10 +75,8 @@ useEffect(()=>{
         CameraTarget.y += 0.25
 
         //Lerping
-       
         SmoothedCameraPosition.lerp(CameraPosition,4*delta)
         SmoothedTargetPosition.lerp(CameraTarget,4*delta)
-
         state.camera.position.copy(SmoothedCameraPosition)   
         state.camera.lookAt(SmoothedTargetPosition)     
     })
