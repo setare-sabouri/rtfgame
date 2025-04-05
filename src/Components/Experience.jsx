@@ -7,15 +7,18 @@ import SpinnerBlock from './Blocks/SpinnerBlock'
 import LimboBlock from './Blocks/LimboBlock'
 import AxeBlock from './Blocks/AxeBlock';
 import Player from './Player/Player.jsx'
+import useGame from '../Stores/useGame.js'
+
 export default function Experience() {
+    const blockCount = useGame((state)=>state.blockCount)
+
     return <>
 
         <OrbitControls makeDefault />
-
         <Suspense>
         <Physics debug>
             <Lights />
-            <Level count={10} types={[SpinnerBlock,LimboBlock,AxeBlock]}/>
+            <Level count={blockCount} types={[SpinnerBlock,LimboBlock,AxeBlock]}/>
             <Player/>
         </Physics> 
         </Suspense>

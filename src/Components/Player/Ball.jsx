@@ -5,6 +5,7 @@ import { useFrame } from 'react-three-fiber'
 import { useRef } from 'react'
 import * as THREE from 'three'
 import jump from './Jump'
+import useGame from '../../Stores/useGame'
 
 const Ball = () => {
     const [subscribeKeys,getKeys] = useKeyboardControls()
@@ -14,8 +15,28 @@ const Ball = () => {
     const [SmoothedCameraPosition]=useState(()=>new THREE.Vector3(0,10,-10))
     const [SmoothedTargetPosition]=useState(()=>new THREE.Vector3())
 
-useEffect(()=>{    
-   const unSubscribe =subscribeKeys(     // Subscribekeys is listening to jump key in the selector function
+    //usegame hook 
+    const startGame=useGame((state)=>state.startGame)
+    const endGame=useGame((state)=>state.endGame)
+    const blockCount=useGame((state)=>state.blockCount)
+    const restartGame=useGame((state)=>state.restartGame)
+
+    
+useEffect(()=>{  
+
+   const unSubscribeReset= useGame.subscribe(
+    (state)=>state.gamePhase,
+    (phase)=>{
+        if(phase==='ready'){
+            ballRef.current.setTranslation({x:0,y:1,z:0})
+            ballRef.current.setLinvel({x:0,y:0,z:0})
+            ballRef.current.setAngvel({x:0,y:0,z:0})
+        }
+       
+    }
+    )
+
+   const unSubscribeJump =subscribeKeys(           // Subscribekeys is listening to jump key in the selector function
         (state)=>{
             return state.jump
         },
@@ -27,8 +48,15 @@ useEffect(()=>{
         }
         
     )
+   const unSubscribeAnyKey = subscribeKeys(()=>{   // Subscribekeys is listening to any key in the selector function
+        startGame()
+    })
+
+
     return ()=>{
-        unSubscribe()
+        unSubscribeJump()
+        unSubscribeAnyKey()
+        unSubscribeReset()
     }
 },[])
 
@@ -78,7 +106,19 @@ useEffect(()=>{
         SmoothedCameraPosition.lerp(CameraPosition,4*delta)
         SmoothedTargetPosition.lerp(CameraTarget,4*delta)
         state.camera.position.copy(SmoothedCameraPosition)   
-        state.camera.lookAt(SmoothedTargetPosition)     
+        state.camera.lookAt(SmoothedTargetPosition)  
+        
+        
+        /**
+         * phases
+         */
+        if ((BallPosition.z)>=blockCount*4+2) {
+            endGame()
+        }
+        if (BallPosition.y<=-1) {
+            restartGame()
+        }
+     
     })
   return (
    <>

@@ -1,0 +1,71 @@
+.interface{
+    right: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    pointer-events: none;
+    font-family: "Bebas Neue",cursive;
+}
+
+
+.time{
+position: absolute;
+color: #fff;
+top: 15%;
+left: 0;
+width: 100%;
+text-align:center;
+background :#00000033;
+font-size: 6vh;
+padding: 2px 0 2px 0;
+}
+
+
+.restart{
+display: flex;
+justify-content: center;
+position:absolute;
+top:40%;
+left:0;
+width: 100%;
+color: #fff;
+font-size: 80px;
+background: #00000033;
+padding: 10px 0 10px 0;
+pointer-events: auto; // to override and be able to click
+cursor:pointer;
+}
+
+
+.controls
+{
+    position: absolute;
+    bottom: 10%;
+    left: 0;
+    width: 100%;
+}
+
+.controls .raw
+{
+    display: flex;
+    justify-content: center;
+}
+
+.controls .key
+{
+    width: 40px;
+    height: 40px;
+    margin: 4px;
+    border: 2px solid #ffffff;
+    background: #ffffff44;
+}
+
+.controls .key.large
+{
+    width: 144px;
+}
+
+.controls .key.active
+{
+    background: #ffffff99;
+}

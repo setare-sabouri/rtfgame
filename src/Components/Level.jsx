@@ -24,7 +24,7 @@ const blocks= useMemo(()=>{
             <StartBlock position={[0,0.1,0]}/>
             {
                 blocks.map((Block,index)=>{
-                    return <Block position={[0,0.1,(index+1)*4]}/>
+                    return <Block key={index} position={[0,0.1,(index+1)*4]}/>
                 })
             }
             <EndBlock position={[0,0.1,(count+1)*4]}/>

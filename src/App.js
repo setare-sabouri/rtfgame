@@ -1,6 +1,8 @@
 import Experience from "./Components/Experience";
 import { Canvas } from "react-three-fiber";
 import { KeyboardControls } from "@react-three/drei";
+import Interface from "./Components/Interface/Interface";
+
 import './styles.scss';
 function App() {
     
@@ -25,6 +27,7 @@ function App() {
     >
         <Experience />
     </Canvas>  
+    <Interface/>
     </KeyboardControls>
   )
 }

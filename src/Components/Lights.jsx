@@ -7,12 +7,9 @@ export default function Lights()
 
     useFrame((state)=>{
         DirLightRef.current.position.z=state.camera.position.z + 3
-        DirLightRef.current.target.position.z=state.camera.position.z +2
+        DirLightRef.current.target.position.z=state.camera.position.z +3
         DirLightRef.current.target.updateMatrixWorld()
 
-
-        console.log(DirLightRef.current.position)
-        console.log(`camera`+state.camera.position.z)
     })
 
 
