@@ -6,17 +6,14 @@ export default create(subscribeWithSelector(
   (set)=>({
 
     blockCount: 3,
-   
+    startTime: 0,
+    endtime: 0,
     gamePhase: 'ready',
 
     startGame:()=>{
       set((state)=>{
         if(state.gamePhase === 'ready'){
-          console.log("sssss")
-
-          return{
-            gamePhase:'playing'
-          }
+          return{gamePhase:'playing',startTime:Date.now()}
         }
         
         else return{}
@@ -45,9 +42,7 @@ export default create(subscribeWithSelector(
 
         if(state.gamePhase==='playing'){
 
-          return{
-            gamePhase:'ended'
-          }
+          return{ gamePhase:'ended',endtime:Date.now() }
         }
         else return{}
       
