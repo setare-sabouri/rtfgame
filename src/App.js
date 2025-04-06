@@ -25,6 +25,7 @@ function App() {
             position: [ 1,5, -10]
         } }
     >
+      <color attach="background" args={['#5ccaf0']} />
         <Experience />
     </Canvas>  
     <Interface/>

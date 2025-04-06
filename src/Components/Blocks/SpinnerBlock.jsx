@@ -13,6 +13,8 @@ const StartBlock = ({position=[0,0,0]}) => {
     const [speed] = useState(()=>(Math.random()+0.5)*(Math.random()>0.5?1:-1))
 
     useFrame((state) => {
+      if (!obstacle.current) return
+
       const time = state.clock.getElapsedTime()
       const rotation= new THREE.Quaternion() 
       rotation.setFromEuler(new THREE.Euler(0, time*speed, 0))

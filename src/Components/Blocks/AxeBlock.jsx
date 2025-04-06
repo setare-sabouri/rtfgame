@@ -14,6 +14,8 @@ const AxeBlock = ({position=[0,0,0]}) => {
     const [speed] = useState(()=>(Math.random()*Math.PI*2))
 
     useFrame((state) => {
+      if (!obstacle.current) return
+
       const time = state.clock.getElapsedTime()
       const xMove=Math.sin(time*speed) *1.25
       obstacle.current.setNextKinematicTranslation({x:position[0]+xMove , y:position[1]+0.75, z:position[2]})
