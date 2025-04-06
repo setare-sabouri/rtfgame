@@ -10,7 +10,6 @@ import FloorCollider from './Blocks/FloorCollider';
 const Level = ({count=5,blockSeed, types=[SpinnerBlock,LimboBlock,AxeBlock]}) => {
 
 const blocks= useMemo(()=>{
-    console.log("calleedd")
     const blocks =[]
 
     for(let i=0;i<count;i++){
@@ -19,6 +18,7 @@ const blocks= useMemo(()=>{
     }
     return blocks
 },[count,types,blockSeed])
+
     return (
         <>
             <axesHelper args={[5]} />
