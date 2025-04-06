@@ -7,9 +7,10 @@ import { useMemo } from 'react';
 import Walls from './Walls';
 import FloorCollider from './Blocks/FloorCollider';
 
-const Level = ({count=5, types=[SpinnerBlock,LimboBlock,AxeBlock]}) => {
+const Level = ({count=5,blockSeed, types=[SpinnerBlock,LimboBlock,AxeBlock]}) => {
 
 const blocks= useMemo(()=>{
+    console.log("calleedd")
     const blocks =[]
 
     for(let i=0;i<count;i++){
@@ -17,7 +18,7 @@ const blocks= useMemo(()=>{
         blocks.push(RandomBlock)
     }
     return blocks
-},[count,types])
+},[count,types,blockSeed])
     return (
         <>
             <axesHelper args={[5]} />

@@ -14,6 +14,7 @@ const LimboBlock = ({position=[0,0,0]}) => {
     const [speed] = useState(()=>(Math.random()*Math.PI*2))
 
     useFrame((state) => {
+      if (!obstacle.current) return
       const time = state.clock.getElapsedTime()
       const yMove=Math.sin(time*speed)+1.5
       obstacle.current.setNextKinematicTranslation({x:position[0] , y:yMove, z:position[2]})

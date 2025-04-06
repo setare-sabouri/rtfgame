@@ -11,14 +11,14 @@ import useGame from '../Stores/useGame.js'
 
 export default function Experience() {
     const blockCount = useGame((state)=>state.blockCount)
-
+    const blockSeed = useGame((state)=>state.blockSeed)
     return <>
 
         <OrbitControls makeDefault />
         <Suspense>
         <Physics debug>
             <Lights />
-            <Level count={blockCount} types={[SpinnerBlock,LimboBlock,AxeBlock]}/>
+            <Level count={blockCount} blockSeed={blockSeed} types={[SpinnerBlock,LimboBlock,AxeBlock]} />
             <Player/>
         </Physics> 
         </Suspense>
