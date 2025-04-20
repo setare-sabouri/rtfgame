@@ -21,7 +21,7 @@ const blocks= useMemo(()=>{
 
     return (
         <>
-            <axesHelper args={[5]} />
+            {/* <axesHelper args={[5]} /> */}
             <StartBlock position={[0,0.1,0]}/>
             {
                 blocks.map((Block,index)=>{

@@ -18,7 +18,7 @@ export default function Experience() {
         <Suspense>
         {/* <Physics debug> */}
         <Physics >
-
+            
             <Lights />
             <Level count={blockCount} blockSeed={blockSeed} types={[SpinnerBlock,LimboBlock,AxeBlock]} />
             <Player/>
