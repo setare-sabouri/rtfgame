@@ -17,12 +17,13 @@ export default function Experience() {
         <OrbitControls makeDefault />
         <Suspense>
         {/* <Physics debug> */}
+
         <Physics >
-            
             <Lights />
             <Level count={blockCount} blockSeed={blockSeed} types={[SpinnerBlock,LimboBlock,AxeBlock]} />
             <Player/>
         </Physics> 
+        
         </Suspense>
      
     </>
