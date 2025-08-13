@@ -1,58 +1,63 @@
-.interface{
+.interface {
     right: 0;
     left: 0;
     height: 100%;
     width: 100%;
     pointer-events: none;
-    font-family: "Bebas Neue",cursive;
+    font-family: "Bebas Neue", cursive;
+}
+
+.leadBoard {
+    position: absolute;
+    top: 15%;
+    right: 5%;
+    color: #fff;
+    
 }
 
 
-.time{
-position: absolute;
-color: #fff;
-top: 15%;
-left: 0;
-width: 100%;
-text-align:center;
-background :#00000033;
-font-size: 6vh;
-padding: 2px 0 2px 0;
+.time {
+    position: absolute;
+    color: #fff;
+    top: 15%;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    background: #00000033;
+    font-size: 6vh;
+    padding: 2px 0 2px 0;
 }
 
 
-.restart{
-display: flex;
-justify-content: center;
-position:absolute;
-top:40%;
-left:0;
-width: 100%;
-color: #fff;
-font-size: 80px;
-background: #00000033;
-padding: 10px 0 10px 0;
-pointer-events: auto; // to override and be able to click
-cursor:pointer;
+.restart {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: 40%;
+    left: 0;
+    width: 100%;
+    color: #fff;
+    font-size: 80px;
+    background: #00000033;
+    padding: 10px 0 10px 0;
+    pointer-events: auto; // to override and be able to click
+    cursor: pointer;
 }
 
 
-.controls
-{
+.controls {
     position: absolute;
     bottom: 10%;
     left: 0;
     width: 100%;
 }
 
-.controls .raw
-{
+.controls .raw {
     display: flex;
     justify-content: center;
 }
 
-.controls .key
-{
+.controls .key {
     width: 40px;
     height: 40px;
     margin: 4px;
@@ -60,12 +65,10 @@ cursor:pointer;
     background: #ffffff44;
 }
 
-.controls .key.large
-{
+.controls .key.large {
     width: 144px;
 }
 
-.controls .key.active
-{
+.controls .key.active {
     background: #ffffff99;
 }

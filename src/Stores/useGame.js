@@ -14,8 +14,6 @@ export default create(subscribeWithSelector(
     startGame:()=>{
 
       set((state)=>{
-        console.log(state.blockCount)
-
         if(state.gamePhase === 'ready'){
           return{gamePhase:'playing',startTime:Date.now()}
         }
